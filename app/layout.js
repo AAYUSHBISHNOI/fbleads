@@ -8,8 +8,8 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  
-  subsets: ["poppins"],
+
+  subsets: ["latin"],
 });
 
 export const metadata = {

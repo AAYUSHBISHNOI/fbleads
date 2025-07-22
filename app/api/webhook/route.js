@@ -66,6 +66,7 @@ export async function POST(req) {
     }
 
     return NextResponse.json({ success: true });
+    
   } else {
     return new NextResponse("Not a page event", { status: 400 });
   }

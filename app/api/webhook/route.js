@@ -8,7 +8,7 @@ export async function GET(req) {
   const token = searchParams.get("hub.verify_token");
   const challenge = searchParams.get("hub.challenge");
 
-  const VERIFY_TOKEN = "anything_you_like"; // <-- Must match Facebook field exactly
+  const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
   if (mode === "subscribe" && token === VERIFY_TOKEN) {
     return new Response(challenge, { status: 200 });
@@ -19,12 +19,15 @@ export async function GET(req) {
 
 export async function POST(req) {
   const body = await req.json();
+  console.log("Webhook POST body:", JSON.stringify(body, null, 2));
 
   if (body.object === "page") {
     for (const entry of body.entry) {
       for (const change of entry.changes) {
         const lead = change.value;
         const formId = lead?.form_id;
+        console.log("Received lead form ID:", formId);
+
         const sheetId = sheetMap[formId];
 
         if (!sheetId) {

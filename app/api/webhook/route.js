@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import sheetMap from "@/utils/sheetMap";
+import sheetMap from "../../utils/sheetMap";
 import { appendToGoogleSheet } from "@/lib/sheets";
 
 export async function GET(req) {
